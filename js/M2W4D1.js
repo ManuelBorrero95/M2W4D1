@@ -1,45 +1,3 @@
-/*
-PARTE 1: 
-Oggi analizzeremo un problema molto comune: realizzare algoritmi di ricerca.
-Il tuo compito è creare una funzione che cercherà per posizione lavorativa E posizione geografica. Questi due valori verranno passati come parametri
-Ti abbiamo fornito un array chiamato "jobs" in fondo al file, NON modificarlo in alcun modo.
-L'algoritmo che devi realizzare cercherà SIA per posizione lavorativa che per posizione geografica.
-Prendi queste tre inserzioni ad esempio:
-
-      job1:  location: "NY, US",     title: "java dev"
-      job2:  location: "Genoa, IT"   title: "web dev"
-      job3:  location: "US"      title: "dev"
-
-Cercando contemporaneamente come posizione lavorativa "dev" e posizione geografica "US", dovresti ottenere come risultato solamente job1 e job3,
-in quanto job2 non soddisfa la condizione posta sulla posizione geografica.
-
-REQUISITI:
-- il tuo algoritmo deve tornare i risultati nella seguente forma:
-{
-  result: [], <-- inserisci qui le inserzioni che rispecchiano la posizione lavorativa e la posizione geografica richiesta
-  count: 0 <-- inserisci qui il numero totale delle inserzioni trovate
-}
-
-- la tua ricerca deve essere "case insensitive" (non deve essere influenzata da lettere maiuscole o minuscole nelle parole cercate). Questo e' possibile trasformando tutto in lettere minuscole con .toLowerCase()
-
-
-PARTE 2: 
-Nella pagina HTML, inserisci 2 input di tipo testo (uno per la location e uno per il titolo lavorativo, ricordati di diversificarli con un id) e un bottone con valore “cerca”
-
-Al click del bottone, il codice deve raccogliere i valori dei due input e darli in pasto alla funzione che hai creato nella parte 1. 
-
-Dopo aver raccolto ed elaborato i dati, e’ il momento di mostrare i risultati sulla pagina: 
-    Puoi scegliere tu se utilizzare un semplice ul / li oppure una tabella 
-    Vai passo per passo e usa molti console.log per capire eventualmente dove sbagli
-    SUGGERIMENTO: ti servira’ un ciclo for!
-
-*/
-
-
-
-
-
-// NON MODIFICARE QUESTO ARRAY!
 const jobs = [
     { title: "Marketing Intern", location: "US, NY, New York" },
     {
@@ -125,13 +83,16 @@ const jobs = [
       title: "English Teacher Abroad",
       location: "US, NY, Saint Bonaventure",
     },
+    {
+      title: "paperino",
+      location: "paperino",
+    },
+    {
+      title: "paperino",
+      location: "paperino",
+    },
   ]
   
-
-
-let result = search("Marketing Intern","US, NY, New York");
-console.table(result);
-
 
 
 function search(title,location){
@@ -142,6 +103,13 @@ function search(title,location){
         jobs: [],
         count: 0
    }
+
+for(let i=0;i<result.count;i++){
+
+  result[i].title 
+  result[i].location
+}
+
     jobs.forEach(element => {
         //trasformo tutto in minuscolo cosi da non avere problemi.
         if(element.location.toLocaleLowerCase() === location.toLocaleLowerCase() && 
@@ -152,3 +120,38 @@ function search(title,location){
     });
     return result;
 }
+
+
+document.addEventListener("DOMContentLoaded",function(){
+ 
+ 
+  document.getElementById("button").addEventListener("click", function(e){
+    e.preventDefault();
+    let title = document.getElementById("title").value;
+    let position =  document.getElementById("location").value;
+
+    let result = search(title,position);
+
+    if(result.count > 0 ){
+
+      document.getElementById("cnt-noresult").style.display = "none";
+      let html = "";
+      result.jobs.forEach(element => {
+      html= html + `<div class="job-position">
+                        <div>${element.location}</div>
+                        <div>${element.location}</div>
+                      </div> \n`
+      });
+
+      document.getElementById("cnt-result").innerHTML += html;
+
+    }
+    else{
+
+      document.getElementById("cnt-noresult").style.display = "block";
+    }
+    console.table(result);
+  });
+  
+})
+

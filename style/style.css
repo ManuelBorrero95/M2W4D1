@@ -1,0 +1,13 @@
+#cnt-noresult{
+    display: none;
+}
+.cnt-messasge{
+    height: 100px;
+    width: 100px;
+}
+.job-position{
+    display: flex;
+}
+.job-position div{
+    margin-left: 10px;
+}
