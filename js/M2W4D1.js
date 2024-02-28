@@ -104,11 +104,6 @@ function search(title,location){
         count: 0
    }
 
-for(let i=0;i<result.count;i++){
-
-  result[i].title 
-  result[i].location
-}
 
     jobs.forEach(element => {
         //trasformo tutto in minuscolo cosi da non avere problemi.
@@ -118,6 +113,9 @@ for(let i=0;i<result.count;i++){
             result.count = result.count + 1;
         }
     });
+
+
+
     return result;
 }
 
@@ -126,7 +124,9 @@ document.addEventListener("DOMContentLoaded",function(){
  
  
   document.getElementById("button").addEventListener("click", function(e){
+    
     e.preventDefault();
+    
     let title = document.getElementById("title").value;
     let position =  document.getElementById("location").value;
 
