@@ -95,63 +95,116 @@ const jobs = [
   
 
 
-function search(title,location){
-
-//creo un oggetto in cui raggruppo le informazioni di cui ho bisogno
-
-    let result = {
-        jobs: [],
-        count: 0
-   }
 
 
-    jobs.forEach(element => {
-        //trasformo tutto in minuscolo cosi da non avere problemi.
-        if(element.location.toLocaleLowerCase() === location.toLocaleLowerCase() && 
-            element.title.toLocaleLowerCase() === title.toLocaleLowerCase()){
-            result.jobs.push(element);
-            result.count = result.count + 1;
-        }
-    });
-
-
-
-    return result;
-}
 
 
 document.addEventListener("DOMContentLoaded",function(){
  
  
-  document.getElementById("button").addEventListener("click", function(e){
+  document.getElementById("btn-search").addEventListener("click", function(e){
     
     e.preventDefault();
+
+
+
     
-    let title = document.getElementById("title").value;
-    let position =  document.getElementById("location").value;
+    if(!checkEmptyElement()){
 
-    let result = search(title,position);
-
-    if(result.count > 0 ){
-
-      document.getElementById("cnt-noresult").style.display = "none";
-      let html = "";
-      result.jobs.forEach(element => {
-      html= html + `<div class="job-position">
-                        <div>${element.location}</div>
-                        <div>${element.location}</div>
-                      </div> \n`
-      });
-
-      document.getElementById("cnt-result").innerHTML += html;
-
+      let title = document.getElementById("jobTitle").value;
+      let location =  document.getElementById("location").value;
+  
+  
+      let result = search(title,location);
+  
+      if(result.count > 0 ){
+  
+        document.getElementById("cnt-noresult").style.display = "none";
+        let html = "";
+        result.jobs.forEach(element => {
+        html= html + `<div class="job-position">
+                          <div>${element.title}</div>
+                          <div>${element.location}</div>
+                        </div> \n`
+        });
+  
+        document.getElementById("cnt-result").innerHTML += html;
+  
+      }
+      else{
+  
+        document.getElementById("msg-noresult").style.display = "block";
+  
+        setTimeout(() => {
+          clearPage();
+        }, 1500);
+  
+        
+      }
     }
-    else{
-
-      document.getElementById("cnt-noresult").style.display = "block";
-    }
-    console.table(result);
   });
   
 })
+
+
+
+
+function search(title,location){
+
+  //creo un oggetto in cui raggruppo le informazioni di cui ho bisogno
+  
+      let result = {
+          jobs: [],
+          count: 0
+     }
+  
+  
+      jobs.forEach(element => {
+          //trasformo tutto in minuscolo cosi da non avere problemi.
+          if(element.location.toLocaleLowerCase() === location.toLocaleLowerCase() && 
+              element.title.toLocaleLowerCase() === title.toLocaleLowerCase()){
+              result.jobs.push(element);
+              result.count = result.count + 1;
+          }
+      });
+      return result;
+  }
+  
+
+function clearPage()  {
+    
+    document.getElementById("msg-noresult").style.display = "none";
+    document.getElementById("jobTitle").value = "";
+    document.getElementById("location").value = "";
+  }
+
+/*   function checkElement(id){
+
+    element = document.getElementById(`msg-${id}`);
+    if(element.value == "")
+    {
+      document.getElementById(`msg-${id}`).style.display="block";
+      setTimeout(() => {
+      document.getElementById(`msg-${id}`).style.display="none";
+      }, 1500);
+      
+    }
+  } */
+
+function checkEmptyElement(){
+  let result = false;
+  let elementToCheck =  document.querySelectorAll(".form-control");
+  elementToCheck.forEach(element => {
+    if(element.value ===""){
+      result = true
+      document.getElementById(`msg-${element.id}`).style.display="block";
+      setTimeout(() => {
+        document.getElementById(`msg-${element.id}`).style.display="none";
+        }, 1500);
+    }
+  });
+  return result;
+}
+
+
 

@@ -1,13 +1,49 @@
-#cnt-noresult{
+.container{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    margin-top: 100px;
+}
+.button{
+
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+    background-color: #0d6efd ;
+    height: 37px;
+    width: 77px;
+    border-radius: 6px;
+    color:white;
+
+}
+.button:hover{
+    background-color: #0B5ED7;
+    cursor: pointer;
+}
+#msg-noresult{
     display: none;
 }
-.cnt-messasge{
-    height: 100px;
-    width: 100px;
-}
-.job-position{
+.custom-warning{
+    height: 5px;    
     display: flex;
+    align-items: center;
 }
-.job-position div{
-    margin-left: 10px;
+.msg-alert{
+    background-color: #FFF3CD;
+    height: 33.6px;
+    padding-left: 15px;
+    color: #6B4D03;
+    font-weight: 400;
+    border-radius: 5px;
+    border: 0.5px solid rgba(255, 166, 0, 0.349);
+    display: flex;
+    align-items: center;
+
+}
+#msg-jobTitle{
+    display: none;
+}
+
+#msg-location{
+    display: none;
 }
