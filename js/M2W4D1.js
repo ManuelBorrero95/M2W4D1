@@ -95,10 +95,6 @@ const jobs = [
   
 
 
-
-
-
-
 document.addEventListener("DOMContentLoaded",function(){
  
  
@@ -106,48 +102,56 @@ document.addEventListener("DOMContentLoaded",function(){
     
     e.preventDefault();
 
-
-
+    //pulisco eventuali precedenti risultati
+    document.getElementById("cnt-result").style.display = "none"    
+    document.getElementById("cnt-result").innerHTML="";   
     
     if(!checkEmptyElement()){
 
-      let title = document.getElementById("jobTitle").value;
-      let location =  document.getElementById("location").value;
+
+      document.getElementsByClassName("loader")[0].classList.toggle("hide");
+
+      setTimeout(() => {
+        let title = document.getElementById("jobTitle").value;
+        let location =  document.getElementById("location").value;
+    
+    
+        let result = search(title,location);
+    
+        if(result.count > 0 ){
+    
+          let html = `<li class="list-group-item list-group-item-success">Abbiamo trovato i ${result.count} seguenti risultati</li>`;
+          result.jobs.forEach(element => {
   
-  
-      let result = search(title,location);
-  
-      if(result.count > 0 ){
-  
-        document.getElementById("cnt-noresult").style.display = "none";
-        let html = "";
-        result.jobs.forEach(element => {
-        html= html + `<div class="job-position">
-                          <div>${element.title}</div>
-                          <div>${element.location}</div>
-                        </div> \n`
-        });
-  
-        document.getElementById("cnt-result").innerHTML += html;
-  
-      }
-      else{
-  
-        document.getElementById("msg-noresult").style.display = "block";
-  
-        setTimeout(() => {
-          clearPage();
-        }, 1500);
-  
-        
-      }
+            html = html + `<li class="list-group-item">${element.title} ${element.location}</li>`                
+          });
+    
+          document.getElementById("cnt-result").innerHTML += html;
+          document.getElementsByClassName("loader")[0].classList.toggle("hide");
+          document.getElementById("cnt-result").style.display = "block";
+          document.getElementById("delete-button").style.display = "flex";
+        }
+        else{
+    
+          document.getElementById("msg-noresult").style.display = "block";
+          document.getElementsByClassName("loader")[0].classList.toggle("hide");
+    
+          setTimeout(() => {
+            clearPage();
+          }, 2000);
+    
+          
+        }
+      }, 1500);
     }
+  
   });
   
+  document.getElementById("delete-button").addEventListener("click", () =>{
+    clearPage()
+  })
+
 })
-
-
-
 
 function search(title,location){
 
@@ -174,22 +178,15 @@ function search(title,location){
 function clearPage()  {
     
     document.getElementById("msg-noresult").style.display = "none";
+    document.getElementById("delete-button").style.display = "none"
+    document.getElementById("cnt-result").style.display = "none"    
+    document.getElementById("cnt-result").innerHTML="";    
     document.getElementById("jobTitle").value = "";
     document.getElementById("location").value = "";
+
+
+    
   }
-
-/*   function checkElement(id){
-
-    element = document.getElementById(`msg-${id}`);
-    if(element.value == "")
-    {
-      document.getElementById(`msg-${id}`).style.display="block";
-      setTimeout(() => {
-      document.getElementById(`msg-${id}`).style.display="none";
-      }, 1500);
-      
-    }
-  } */
 
 function checkEmptyElement(){
   let result = false;

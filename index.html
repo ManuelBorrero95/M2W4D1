@@ -22,14 +22,24 @@
               <input type="text" class="form-control" id="location" placeholder="Insert location">
               <div class="msg-alert" id="msg-location">Inserisci una location!</div>
             </div>
-            <div class="button" id="btn-search">Search</div>
+            <div class="btn-group">
+                <div class="button search-button" id="btn-search">Search</div>
+                <div class="button delete-button" id="delete-button">Cancel</div>
+            </div>
+            
           </form>
 
           <div class="alert alert-danger" id="msg-noresult" role="alert">
             Spiacenti non ci sono lavori con i tuoi criteri di ricerca
           </div>
+
+          <ul class="list-group" id="cnt-result">
+          </ul>
+          
     </div>
 
+    <div class="loader hide"></div>
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
