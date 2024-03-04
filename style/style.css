@@ -1,8 +1,17 @@
+body{
+    background-color: #FAA6FF;
+}
 .container{
     display: flex;
+    background-color: #7353BA;
     justify-content: center;
     flex-flow: column;
+    height: 500px;
+    width: 500px;
     margin-top: 100px;
+    box-shadow: 1px 0px 10px 0px #000000;
+    border-radius: 5px;
+
 }
 .button{
 
@@ -67,10 +76,16 @@
 #cnt-result{
     display: none;
     margin-top: 20px;
+    height: 200px;
+    overflow:scroll;
 
 }
 
-
+label{
+    color: #0F1020;
+    font-size: 20px;
+    font-weight: 600;
+}
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
