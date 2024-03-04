@@ -139,11 +139,8 @@ function search(title, location) {
   jobs.forEach((element) => {
     //trasformo tutti tutto in minuscolo prima di fare il confronto
     //cosi da avere una ricerca CaseInsitive
-    if (
-      element.location
-        .toLocaleLowerCase()
-        .includes(location.toLocaleLowerCase()) &&
-      element.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
+    if (element.location.toLocaleLowerCase().includes(location.toLocaleLowerCase()) &&
+        element.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())
     ) {
       result.jobs.push(element);
       result.count = result.count + 1;
