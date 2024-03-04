@@ -29,26 +29,6 @@ const jobs = [
     location: "US, NJ, Jersey City",
   },
   {
-    title: "ASP.net Developer Job opportunity at United States,New Jersey",
-    location: "US, NJ, Jersey City",
-  },
-  {
-    title: "ASP.net Developer Job opportunity at United States,New Jersey",
-    location: "US, NJ, Jersey City",
-  },
-  {
-    title: "ASP.net Developer Job opportunity at United States,New Jersey",
-    location: "US, NJ, Jersey City",
-  },
-  {
-    title: "ASP.net Developer Job opportunity at United States,New Jersey",
-    location: "US, NJ, Jersey City",
-  },
-  {
-    title: "ASP.net Developer Job opportunity at United States,New Jersey",
-    location: "US, NJ, Jersey City",
-  },
-  {
     title: "Talent Sourcer (6 months fixed-term contract)",
     location: "GB, LND, London",
   },
